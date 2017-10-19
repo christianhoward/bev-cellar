@@ -2,19 +2,31 @@ const mongoose = require('mongoose');
 
 const requireLogin = require('../middlewares/requireLogin');
 
-const Bevs = mongoose.model('bevs');
+const Bev = mongoose.model('bevs');
 //update with bevroutes
 module.exports = app => {
-    app.get('/mongoosetest', requireLogin, async (req, res) => {
-        const test = await Test.find();
-        res.send(test);
+    app.get('/api/bevs', requireLogin, async (req, res) => {
+        const bevs = await Bev.find();
+        res.send(bevs);
     });
-    app.post('/mongoosetest', async (req, res) => {
-        const { test } = req.body;
-        const tester = new Test({
-            test
+    app.post('/api/bevs', requireLogin, async (req, res) => {
+        const { name, type, year, quantity, location, notes } = req.body;
+        const bev = new Bev({
+            name,
+            type,
+            year,
+            quantity,
+            location,
+            notes,
+            _user: req.user.id,
+            createdOn: Date.now(),
+            lastUpdatedOn: null
         });
-        await tester.save();
-        res.send(tester);
+        try {
+            await bev.save();
+            res.send(bev);
+        } catch (err) {
+            res.status(422).send(err)
+        }
     });
 };
