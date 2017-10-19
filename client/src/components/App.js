@@ -11,7 +11,6 @@ import BevForm from './BevForm';
 class App extends Component {
     componentDidMount() {
         this.props.fetchUser();
-        console.log(this.props);
     }
     render() {
         return (

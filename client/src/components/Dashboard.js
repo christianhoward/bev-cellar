@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
+import BevsList from './BevsList';
+
 class Dashboard extends Component {
     render() {
         return (
             <div className="container">
-                <h3>Welcome to Bev Cellar's Dashboard!</h3>
-                <p>Here, you can track your bevs. Add a new bev by click the link in the nav bar.</p>
+                <BevsList />
             </div>
         );
     }

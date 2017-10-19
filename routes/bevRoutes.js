@@ -6,7 +6,7 @@ const Bev = mongoose.model('bevs');
 //update with bevroutes
 module.exports = app => {
     app.get('/api/bevs', requireLogin, async (req, res) => {
-        const bevs = await Bev.find();
+        const bevs = await Bev.find({ _user: req.user.id });
         res.send(bevs);
     });
     app.post('/api/bevs', requireLogin, async (req, res) => {
