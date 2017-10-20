@@ -21,6 +21,7 @@ class App extends Component {
                         <Route exact path="/" component={Landing} />
                         <Route exact path="/dashboard" component={Dashboard} />
                         <Route exact path="/form" component={BevForm} />
+                        <Route path="/form/:id" component={BevForm} />
                     </div>
                 </BrowserRouter>
             </div>

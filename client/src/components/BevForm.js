@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import formFields from './formFields';
 import BevField from './BevField';
-import { submitBev } from '../actions'
+import { submitBev, updateBev } from '../actions'
 
 
 class BevForm extends Component {
@@ -17,8 +17,13 @@ class BevForm extends Component {
         });
     }
     onSubmit(bev) {
-        this.props.submitBev(bev);
-        this.props.history.push('/dashboard');
+        if (bev._id) {
+            this.props.updateBev(bev);
+            this.props.history.push('/dashboard');
+        } else {
+            this.props.submitBev(bev);
+            this.props.history.push('/dashboard');
+        }
     }
     render() {
         return (
@@ -33,6 +38,12 @@ class BevForm extends Component {
     }
 };
 
-export default connect(null, { submitBev })(reduxForm({
+function mapStateToProps(state, props) {
+    return {
+        initialValues: state.bevs.find(bev => bev._id === props.match.params.id)
+    }
+}
+
+export default connect(mapStateToProps, { submitBev, updateBev })(reduxForm({
     form: 'bevForm'
 })(BevForm));
