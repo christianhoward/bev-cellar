@@ -30,7 +30,7 @@ class BevsList extends Component {
                         </p>
                         <p className="right">Date Added: {new Date(bev.createdOn).toLocaleDateString()}</p>
                         <br />
-                        <p className="right">Last Updated: {new Date(bev.lastUpdatedOn).toLocaleDateString()}</p>
+                        { bev.lastUpdatedOn ? (<p className="right">Last Updated: {new Date(bev.lastUpdatedOn).toLocaleDateString()}</p>) : null }
                     </div>
                     <div className="card-action" style={{paddingBottom: '25px'}}>
                         <a>Quantity: {bev.quantity}</a>
