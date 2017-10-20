@@ -32,7 +32,7 @@ module.exports = app => {
     app.patch('/api/bevs/:id', requireLogin, async (req, res) => {
         const id = req.params.id;
         const { name, type, year, quantity, location, notes } = req.body;
-        const bev = { name, type, year, quantity, location, notes };
+        const bev = { name, type, year, quantity, location, notes, lastUpdatedOn: Date.now() };
         try {
             await Bev.findByIdAndUpdate(id, {$set: bev}, {new: true});
             res.send(bev);
