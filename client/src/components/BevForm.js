@@ -38,6 +38,16 @@ class BevForm extends Component {
     }
 };
 
+function validate(values) {
+    const errors = {};
+    _.each(formFields, ({ name }) => {
+        if (!values[name]) {
+            errors[name] = 'You must provide a value.';
+        }
+    });
+    return errors;
+}
+
 function mapStateToProps(state, props) {
     return {
         initialValues: state.bevs.find(bev => bev._id === props.match.params.id)
@@ -45,5 +55,6 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps, { submitBev, updateBev })(reduxForm({
+    validate,
     form: 'bevForm'
 })(BevForm));

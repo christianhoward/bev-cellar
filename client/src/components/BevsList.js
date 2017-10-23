@@ -25,16 +25,16 @@ class BevsList extends Component {
                 <div key={bev._id} className="card darken-1">
                     <div className="card-content">
                         <span className="card-title">{bev.name}</span>
-                        <p>
-                            {bev.notes}
-                        </p>
+                        <p><b>Year:</b> {bev.year}</p>
+                        <p><b>Type:</b> {bev.type}</p>
+                        <p><b>Location:</b> {bev.location}</p>
+                        <p>{bev.notes}</p>
                         <p className="right">Date Added: {new Date(bev.createdOn).toLocaleDateString()}</p>
                         <br />
                         { bev.lastUpdatedOn ? (<p className="right">Last Updated: {new Date(bev.lastUpdatedOn).toLocaleDateString()}</p>) : null }
                     </div>
                     <div className="card-action" style={{paddingBottom: '25px'}}>
-                        <a>Quantity: {bev.quantity}</a>
-                        <a>Location: {bev.location}</a>
+                        <a className="brown-text text-darken-4">Quantity: {bev.quantity}</a>
                         <button className="btn red darken-2 right" style={{marginLeft: '10px'}} onClick={() => {this.handleDeleteBev(bev._id)}}>Delete</button>
                         <Link to={`/form/${bev._id}`}><button className="btn light-blue darken-2 right" >Update</button></Link>
                     </div>
