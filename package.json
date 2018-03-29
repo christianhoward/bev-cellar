@@ -28,5 +28,11 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "path-parser": "^2.0.2"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "mocha": "^4.0.1",
+    "mongodb": "^2.2.33",
+    "supertest": "^3.0.0"
   }
 }

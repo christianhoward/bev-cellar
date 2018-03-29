@@ -20,7 +20,9 @@ class BevsList extends Component {
                 </div>
             ];
         }
-        return this.props.bevs.map(bev => {
+        return this.props.bevs.filter((bev) => {
+            return bev.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1;
+        }).map(bev => {
             return (
                 <div key={bev._id} className="card darken-1">
                     <div className="card-content">
