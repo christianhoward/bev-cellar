@@ -7,12 +7,11 @@ import formFields from './formFields';
 import BevField from './BevField';
 import { submitBev, updateBev } from '../actions'
 
-
 class BevForm extends Component {
     renderFields() {
-        return _.map(formFields, ({ label, name }) => {
+        return _.map(formFields, ({ label, name, type, min, max, rows, cols, placeholder }) => {
             return (
-                <Field key={name} component={BevField} type="text" label={label} name={name} />
+                <Field key={name} component={BevField} type={type} label={label} name={name} placeholder={placeholder} min={min} max={max} rows={rows} cols={cols} />
             );
         });
     }
